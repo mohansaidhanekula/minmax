@@ -1,20 +1,15 @@
-#Min Max Method
+#minmax
 import math
-
-def minimax (curDepth, nodeIndex,maxTurn, scores,targetDepth):
-	if (curDepth == targetDepth):
-		return scores[nodeIndex]
-
-	if (maxTurn):
-		return max(minimax(curDepth + 1, nodeIndex * 2,False, scores, targetDepth),minimax(curDepth + 1, nodeIndex * 2 + 1,False, scores, targetDepth))
-	else:
-		return min(minimax(curDepth + 1, nodeIndex * 2,True, scores, targetDepth),minimax(curDepth + 1, nodeIndex * 2 + 1,True, scores, targetDepth))
-
-scores = [3, 5, 2, 9, 12, 5, 23, 23]
-
-treeDepth = math.log(len(scores), 2)
-
-print("The optimal value is : ", end = "")
-print(minimax(0, 0, True, scores, treeDepth))
-print("Code executed successfully")
-
+def minimax(cur_depth,node_index,max_trun,scores,target_depth):
+    if cur_depth==target_depth:
+        return scores[node_index]
+    if max_trun:
+        return max(minimax(cur_depth+1,node_index*2,False,scores,target_depth),
+                   minimax(cur_depth+1,node_index*2+1,False,scores,target_depth))
+    else:
+        return min(minimax(cur_depth+1,node_index*2,True,scores,target_depth),
+                   minimax(cur_depth+1,node_index*2+1,True,scores,target_depth))
+    
+scores=[21,3,47,9,33,34,23,24]
+tree_depth=math.log(len(scores),2)    
+print("the final solution of the node is:",minimax(0,0,True,scores,int(tree_depth)))
